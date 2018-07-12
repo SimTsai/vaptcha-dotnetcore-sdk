@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6614115D-CE05-434E-99A5-8F3EF538F063}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaptchaCoreSDK", "src\VaptchaCoreSDK\VaptchaCoreSDK.csproj", "{23BEBBFD-164E-4A23-9A6A-8F319BAD5599}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{7DFDB031-1EEB-4760-A33C-4D36668A18D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaptchCoreDemo", "demo\VaptchCoreDemo\VaptchCoreDemo.csproj", "{522489A7-A7EB-41C3-91F4-8FCBA376288A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23BEBBFD-164E-4A23-9A6A-8F319BAD5599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23BEBBFD-164E-4A23-9A6A-8F319BAD5599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23BEBBFD-164E-4A23-9A6A-8F319BAD5599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23BEBBFD-164E-4A23-9A6A-8F319BAD5599}.Release|Any CPU.Build.0 = Release|Any CPU
+		{522489A7-A7EB-41C3-91F4-8FCBA376288A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{522489A7-A7EB-41C3-91F4-8FCBA376288A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{522489A7-A7EB-41C3-91F4-8FCBA376288A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{522489A7-A7EB-41C3-91F4-8FCBA376288A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{23BEBBFD-164E-4A23-9A6A-8F319BAD5599} = {6614115D-CE05-434E-99A5-8F3EF538F063}
+		{522489A7-A7EB-41C3-91F4-8FCBA376288A} = {7DFDB031-1EEB-4760-A33C-4D36668A18D3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F95C935-E45E-40FC-83D8-1360911B4182}
+	EndGlobalSection
+EndGlobal
