@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -13,18 +14,21 @@ namespace VaptchaCoreSDK
         private readonly VaptchaOptions vaptchaOptions;
         private readonly VaptchaKeyOptions vaptchaKeyOptions;
         private readonly HttpClient httpClient;
+        private readonly ILogger<VaptchaHttpClient> logger;
 
         public VaptchaHttpClient(
             IOptions<VaptchaOptions> vaptchaOptions,
             IOptions<VaptchaKeyOptions> vaptchaKeyOptions,
             HttpClient httpClient,
-            VaptchaDownCheckHttpClient vaptchaDownCheckHttpClient
+            VaptchaDownCheckHttpClient vaptchaDownCheckHttpClient,
+            ILogger<VaptchaHttpClient> logger
             )
         {
             this.vaptchaOptions = vaptchaOptions?.Value ?? throw new ArgumentNullException(nameof(vaptchaOptions));
             this.vaptchaKeyOptions = vaptchaKeyOptions?.Value ?? throw new ArgumentNullException(nameof(vaptchaKeyOptions));
             this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             VaptchaDownCheckHttpClient = vaptchaDownCheckHttpClient ?? throw new ArgumentNullException(nameof(vaptchaDownCheckHttpClient));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             httpClient.BaseAddress = new Uri(this.vaptchaOptions.ApiUrl);
         }
 
@@ -41,7 +45,9 @@ namespace VaptchaCoreSDK
             };
             try
             {
-                return await httpClient.GetStringAsync(uriBuilder.Uri);
+                var challenge = await httpClient.GetStringAsync(uriBuilder.Uri);
+                logger.LogTrace($"{now} scene:{sceneId} challenge: {challenge}");
+                return challenge;
             }
             catch
             {
@@ -71,7 +77,9 @@ namespace VaptchaCoreSDK
 
                 var responseMessage = await httpClient.PostAsync(vaptchaOptions.ValidateUrl, content);
                 responseMessage.EnsureSuccessStatusCode();
-                return await responseMessage.Content.ReadAsStringAsync() == ConstString.success;
+                var response = await responseMessage.Content.ReadAsStringAsync();
+                logger.LogTrace($"{now} scene:{sceneId} challenge: {challenge} token: {token} validate response is {response}");
+                return response == ConstString.success;
             }
             catch
             {
